@@ -1,14 +1,12 @@
 import { Response } from "express";
-import { HTTP_RESPONSE } from "./HttpContext";
+import { HTTP_RESPONSE, Res } from "./HttpContext";
 
 export class Result {
-    static sendResponse<T>(res:Response,data:T) : void {
-         res.status(HTTP_RESPONSE.OK).json(data)
-         return;
+    static sendResponse<T>(res:Response,data:T) : Res<T> {
+         return res.status(HTTP_RESPONSE.OK).json(data)
     }
-    static sendError(res:Response,status:number,error:string|null) : void{
-        res.status(status).json({success:false,message:error});
-        return;
+    static sendError<T>(res:Response,status:number,error:string|null) : Res<T>{
+        return res.status(status).json({success:false,message:error});
     }
 
 }

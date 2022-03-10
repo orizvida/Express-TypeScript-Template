@@ -6,7 +6,7 @@ import Sample from '../interfaces/sample';
 const NAMESPACE = 'sample';
 
 
-const sampleFunction = async (req: Req<any, { id: string }, Sample, { id: number }>, res: Res<Sample>, next: NextFunction) => {
+const sampleFunction = async (req: Req<any, { id: string }, Sample, { id: number }>, res: Res<Sample>, next: NextFunction) : Promise<Res<Sample> | void> => {
     try {
         const sampleResponse = {
             id: Number(req.params.id),
@@ -20,7 +20,7 @@ const sampleFunction = async (req: Req<any, { id: string }, Sample, { id: number
 
         // Simulate expected error (Bad request)
         if (req.body.name === 'error') {
-            return Result.sendError(res, HTTP_RESPONSE.BAD_REQUEST, 'Error!');
+            return Result.sendError<Sample>(res, HTTP_RESPONSE.BAD_REQUEST, 'Error!');
         }
         return Result.sendResponse<Sample>(res, sampleResponse);
     }
