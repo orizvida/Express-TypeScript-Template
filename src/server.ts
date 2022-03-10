@@ -45,7 +45,7 @@ router.use(cors({
         if (allowedOrigins.indexOf(origin) === -1) {
             var message = `The CORS policy for this origin doesn't ` +
                 'allow access from the particular origin.';
-            return callback(new HttpException(403, { message }), false);
+            return callback(new HttpException(403,'error'), false);
         }
         return callback(null, true);
     }

@@ -1,5 +1,5 @@
 import pino from 'pino'
-import uuid from 'uuid';
+import pinoHTTP from 'pino-http';
 const levels = {
     info:10,
     warn:20,
